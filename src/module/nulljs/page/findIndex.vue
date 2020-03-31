@@ -132,7 +132,7 @@ export default {
   },
   methods: {
     onConfirm1 (date) {
-      this.mydate.value = `${date.getUTCFullYear()}-${(date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}-${date.getDate()}`
+      this.mydate.value = `${date.getUTCFullYear()}-${(date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}-${date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate()}`
       this.params.time = this.mydate.value
       this.mydate.showCalendar = false
     },
