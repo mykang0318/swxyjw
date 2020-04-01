@@ -85,7 +85,7 @@ export default {
               })
             })(i)
           }
-          Toast('更新成功')
+          Toast('更新成功 ')
           this.isLoading = false
         })
       }, 1000)

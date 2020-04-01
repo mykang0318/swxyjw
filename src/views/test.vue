@@ -6,7 +6,7 @@
 
 <script>
 // import { mapActions } from 'vuex'
-import Test from './../module/nulljs/findIndex'
+import Test from '../module/nulljs/page/findIndex'
 export default {
   name: 'test',
   components: {

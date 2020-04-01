@@ -7,8 +7,8 @@ import Center from '../components/menu/center'
 import Right from '../components/menu/right'
 import XhBind from '../views/xhBind'
 import CjTable from '../module/cj/page/cj_table'
-import FindIndex from '../module/nulljs/findIndex'
-import JsTable from '../module/nulljs/jsTable'
+import FindIndex from '../module/nulljs/page/findIndex'
+import JsTable from '../module/nulljs/page/jsTable'
 
 Vue.use(VueRouter)
 

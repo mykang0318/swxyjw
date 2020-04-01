@@ -1,6 +1,7 @@
 <template>
 <div>
-  <div>查询页面</div>
+  <CHeader/>
+  <div id="div1">请选择查询的条件</div>
   <div>
     <Form @submit="onSubmit">
       <div>
@@ -73,9 +74,11 @@
 
 <script>
 import { Field, Popup, Picker, Calendar, Button, Form } from 'vant'
+import CHeader from './c_header'
 export default {
   name: 'findIndex',
   components: {
+    CHeader,
     Field,
     Popup,
     Picker,
@@ -85,6 +88,7 @@ export default {
   },
   data () {
     return {
+      ctime: '',
       mydate: {
         value: '',
         showCalendar: false
@@ -95,8 +99,9 @@ export default {
         keyId: '',
         columns: [
           { keyId: 'allday', text: '全天' },
-          { keyId: '0104', text: '上午' },
-          { keyId: '0508', text: '下午' },
+          { keyId: 'am', text: '上午' },
+          { keyId: 'pm', text: '下午' },
+          { keyId: 'night', text: '晚上' },
           { keyId: '0102', text: '1-2节' },
           { keyId: '0304', text: '3-4节' },
           { keyId: '0506', text: '5-6节' },
@@ -132,7 +137,7 @@ export default {
   },
   methods: {
     onConfirm1 (date) {
-      this.mydate.value = `${date.getUTCFullYear()}-${(date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}-${date.getDate()}`
+      this.mydate.value = `${date.getUTCFullYear()}-${(date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1)}-${date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate()}`
       this.params.time = this.mydate.value
       this.mydate.showCalendar = false
     },
@@ -149,10 +154,22 @@ export default {
     onSubmit () {
       this.$router.push({ name: '空教室详情', params: this.params })
     }
+  },
+  created: function () {
+    // 获取当天时间
+    const a = ['日', '一', '二', '三', '四', '五', '六']
+    const day1 = new Date()
+    day1.setTime(day1.getTime())
+    var s1 = '今天是 ' + day1.getFullYear() + '年' + (day1.getMonth() + 1) + '月' + day1.getDate() + '日 ' + '星期' + a[day1.getDay()]
+    this.ctime = s1
   }
 }
 </script>
 
 <style scoped>
-
+  #div1{
+    margin: .4rem 1rem;
+    font-size: .9rem;
+    color: #8e8e8e;
+  }
 </style>
